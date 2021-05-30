@@ -17,7 +17,9 @@
 # - Parse dates from the column `'DATE'` and set the dates as index in the dataframe 
 
 # YOUR CODE HERE 1 to read the data into data and parse dates
-
+fp='data/helsinki-vantaa.csv'
+import pandas as pd
+data = pd.read_csv(fp,index='DATE')
 # This test print should print first five rows
 print(data.head())
 
@@ -31,7 +33,7 @@ print(len(data))
 # - Store the selection in a new variable `selection`
 
 # YOUR CODE HERE 2
-
+selection = data["1988-01-01":"2018-12-01"]
 # Check that the data was read in correctly:
 selection.head()
 
@@ -51,13 +53,18 @@ print("Number of rows:", len(selection))
 # 
 
 # YOUR CODE HERE 3
+selection.plot(marker='o', linestyle="solid", color='b')
+selection.title("Helsinki-Vantaa Airport")
+selection.xlabel("Time")
+selection.ylabel("Temperature (Celsius)")
+selection.grid(True)
 
 # Set output file name
-outputfp = ""
+outputfp = "temp_line_plot.png"
 
 # Save plot as image
 # YOUR CODE HERE 4
-
+data.savefig('temp_line_plot.png')
 import os
 
 #Check that output file exists (also open the file and check that the plot looks ok!)
